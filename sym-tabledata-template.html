@@ -1,0 +1,56 @@
+<style>
+	table{
+		table-layout: auto;
+	}
+	
+	#{{SymbolName}}tr{
+		background-color: {{config.HeaderColor}};
+		color: #FFFFFF;
+	}
+	
+	.colheader{
+		font-weight: bold;
+		padding:5px;
+		width: 20px;
+		border: 1px solid #dddddd;
+	}
+	
+	.tabledata {
+		border: 1px solid #dddddd;
+		white-space:nowrap;
+		color: #000000;
+		font-weight: normal;
+	}
+	.tabledata:first-child{
+		font-weight: bold;
+		white-space:nowrap;
+		
+	}
+	
+	.therow:nth-child(even) {
+		background-color: #dddddd;
+	}
+	.therow:nth-child(odd) {
+		background-color: #FFFFFF;
+	}
+	.thepath{
+		background-color: #303030;
+		color: #FFFFFF;
+		font-weight: bold;
+	}
+
+</style>
+<div>
+	<table>
+		<caption class="thepath">{{Parent}}</caption>
+		<tr id="{{SymbolName}}tr">
+			<th class="colheader">{{theelement}}</th>
+			<th class="colheader" ng-repeat = 'item in Times'>{{item}}</th>
+		</tr>
+		<tr ng-repeat = 'attr in Data' class="therow">
+			<td class="tabledata">{{Labels[$index]}}</td>
+			<td class="tabledata" ng-repeat = 'value in attr track by $index'>{{value}}</td>
+			
+		</tr>
+	</table>
+</div>

@@ -1,0 +1,76 @@
+<style>
+	.buttons{
+		background-color: green;
+		color: white;
+		padding: 5px;
+		margin-top: 5px;
+		margin-bottom:5px;
+		margin-left:auto;
+		margin-right: auto;
+		display: block;
+	}
+	.names{
+		color:white;
+		font-size:90%;
+	}
+	.inputs{
+		margin-top: 5px;
+		margin-bottom:5px;
+		margin-left:auto;
+		margin-right: auto;
+	}
+	
+	
+</style>
+
+<ul kendo-panel-bar class="t-side-panel-bgcolor" style="font-size: 14px;"> 
+	<li class="k-state-active"> 
+		<span class="panel-bar-label-no-wrap">Configuration</span>
+		<div class="config-option-single-row" style="margin:10px 20px; font-size: 14px;"> 
+			<div class="config-option-ie11-overflow-fix"> 
+				<div style="width: 85%; margin: 10px 0 15px 20px;">
+					<pv-color-picker colorkeyword="Header Color", ng-model="config.HeaderColor">
+					</pv-color-picker>
+				</div>
+				
+				
+			</div>
+			<div class="config-option-ie11-overflow-fix"> 
+				<input type="checkbox" name="cbElementName" ng-model="config.showElementNames" style="margin-right:10px;">Show Element Names
+			</div>
+			<div class="config-option-ie11-overflow-fix"> 
+				<input type="checkbox" name="cbRebuild" ng-model="config.RebuildAttributes" style="margin-right:10px;">Rebuild Attributes
+			</div>
+		</div> 
+	</li>
+	
+</ul>
+
+
+<ul kendo-panel-bar class="t-side-panel-bgcolor" style="font-size: 14px;" ng-if="config.RebuildAttributes"> 
+	<li class="k-state-active" > 
+		<span class="panel-bar-label-no-wrap">Excluded Attributes</span>
+		
+		<div class="trend-config-trace-list" tabindex="0" style="padding: 4px">  
+			<div ng-repeat="attr in config.ExcludedAttributes"  
+				ng-init="runtimeData.selectedStream = 0"  
+				ng-click="runtimeData.selectedStream = $index"  
+				ng-style="config.ExcludedAttributes.length > 1 && runtimeData.selectedStream === $index && { 'background-color' : '#d5d5d5' }"  
+				class="trend-config-trace-list-item"  
+				title="test">{{attr}}
+			</div>  
+		</div>  
+
+		<div class="c-button-default-container" style="padding: 4px 4px 0 4px; margin-top: 0; margin-bottom: 0">  
+			<button type="button" class="c-primary-button trend-config-trace-arrange-button"  
+					ng-click="runtimeData.removeAttr()">  
+				<span class="k-icon k-delete"></span>  
+			</button>  
+		</div>
+
+		<div class="c-button-default-container" style="padding: 4px 4px 0 4px; margin-top: 0; margin-bottom: 0"> 
+			<input id="attrinput" class="inputs" type="text" ng-model="runtimeData.input"></input>
+			<button type="button" class="c-primary-button trend-config-trace-arrange-button" ng-click = 'runtimeData.addAttr()'>Add</button>
+		</div>
+	</li>
+</ul>
